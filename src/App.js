@@ -12,7 +12,7 @@ class App extends Component {
     ],
     otherState: 'some other value'
   };
-
+  
   switchNameHandler = (newName) => {
     // console.log('Was clicked!');
     // DON'T DO THIS: this.state.persons[0].name = 'Maximilian';
@@ -36,11 +36,18 @@ class App extends Component {
   }
 
   render() {
+    const style = {
+      backgroundColor : 'white',
+      font :'inherit',
+      border : '1px solid gris',
+      padding : '8px',
+      cursor: 'pointer'
+    }
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
-        <button onClick={()=>this.switchNameHandler('Maximillian')}>Switch Name</button>
+        <button style={style} onClick={()=>this.switchNameHandler('Maximillian')}>Switch Name</button>
         <Person
           click={this.switchNameHandler.bind(this, 'Maximiliano')}
           name={this.state.persons[0].name}
