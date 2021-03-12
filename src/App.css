@@ -10,3 +10,9 @@
   padding : 8px;
 }
 */
+.red {
+  color : red
+}
+.bold {
+  font-weight: bold;
+}
