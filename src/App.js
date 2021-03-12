@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import Radium , {StyleRoot} from 'radium';
+//import Radium , {StyleRoot} from 'radium';
+import styled from 'styled-components';
 
+const ButtonComponent = styled.button`
+        background-color : ${(props) => props.altHover ? 'red' : 'green' };
+        color:white;
+        font :inherit;
+        border : 1px solid gris;
+        padding : 8px;
+        cursor: pointer;
+        &:hover  {
+          background-color : ${props => props.altHover ? 'salmon' : 'lightgreen'};
+          color : black;
+
+`
 
 class App extends Component {
 
@@ -58,6 +71,7 @@ class App extends Component {
   }
  
   render() {
+    /*
     const style = {
       backgroundColor : 'green',
       color:'white',
@@ -69,7 +83,8 @@ class App extends Component {
         backgroundColor : 'lightgreen',
         color : 'black',
       }
-    }
+    };
+    */
     //let num = this.LettersLengthHandler;
     let persons = null ;
     if(this.state.showPersons) {
@@ -84,11 +99,16 @@ class App extends Component {
          
     </div>
     );
+
+    /*
       style.backgroundColor = 'red';
       style[':hover'] = {
         backgroundColor : 'salemon',
         color : 'black',
       }
+    */  
+
+
     }
     let classesCss = [];
     if(this.state.persons.length <= 2) {
@@ -98,18 +118,20 @@ class App extends Component {
        classesCss.push('bold');
     }
     return (
-      <StyleRoot>
+     // <StyleRoot>
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p className={classesCss.join(' ')} >This is really working!</p>
-        <button style={style} onClick={this.togglePersons}>Toggle Persons</button>
+        <ButtonComponent  onClick={this.togglePersons} altHover={this.state.showPersons}>Toggle Persons</ButtonComponent>
+        
+        
           {persons}
       </div>
-      </StyleRoot>
+      //</StyleRoot>
     );
   }
     //return React.createElement('div',{className :'App'},React.createElement('h1',null,'Does it work?!!!!!'))
   
 }
 
-export default Radium(App);
+export default App;
