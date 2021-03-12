@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import './App.css';
+//import './App.css';
+import classesCssModules from './App.css';
 import Person from './Person/Person';
 //import Radium , {StyleRoot} from 'radium';
-import styled from 'styled-components';
+//import styled from 'styled-components';
 
+/*
 const ButtonComponent = styled.button`
         background-color : ${(props) => props.altHover ? 'red' : 'green' };
         color:white;
@@ -16,7 +18,7 @@ const ButtonComponent = styled.button`
           color : black;
 
 `
-
+*/
 class App extends Component {
 
   state = {
@@ -86,6 +88,7 @@ class App extends Component {
     };
     */
     //let num = this.LettersLengthHandler;
+    let buttonClass = [classesCssModules.Button];
     let persons = null ;
     if(this.state.showPersons) {
       persons = (
@@ -99,7 +102,8 @@ class App extends Component {
          
     </div>
     );
-
+     
+    buttonClass.push(classesCssModules.Red);
     /*
       style.backgroundColor = 'red';
       style[':hover'] = {
@@ -112,17 +116,18 @@ class App extends Component {
     }
     let classesCss = [];
     if(this.state.persons.length <= 2) {
-      classesCss.push('red');
+      classesCss.push(classesCssModules.red);
     }
     if(this.state.persons.length <=1) {
-       classesCss.push('bold');
+       classesCss.push(classesCssModules.bold);
     }
     return (
      // <StyleRoot>
-      <div className="App">
+      <div className={classesCssModules.App}>
         <h1>Hi, I'm a React App</h1>
         <p className={classesCss.join(' ')} >This is really working!</p>
-        <ButtonComponent  onClick={this.togglePersons} altHover={this.state.showPersons}>Toggle Persons</ButtonComponent>
+        
+        <button className={buttonClass.join(' ')} onClick={this.togglePersons}>Toggle Persons</button>
         
         
           {persons}

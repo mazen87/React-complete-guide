@@ -1,5 +1,5 @@
 
-/*
+
 .Person {
     width: 40%;
     margin: 16px auto;
@@ -8,4 +8,9 @@
     box-shadow: 0 2px 2px #ccc;
     text-align: center;
 }
-*/
+
+ @media (min-width: 500px)  {
+     .Person {
+        width : 650px;
+     }   
+} 
