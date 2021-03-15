@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 //import './App.css';
 import classesCssModules from './App.css';
-import Person from './Person/Person';
+import Person from '../components/Persons/Person/Person';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 //import Radium , {StyleRoot} from 'radium';
 //import styled from 'styled-components';
 //import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
@@ -89,11 +91,14 @@ class App extends Component {
     };
     */
     //let num = this.LettersLengthHandler;
-    let buttonClass = [classesCssModules.Button];
+    //let buttonClass = [classesCssModules.Button];
     let persons = null ;
     if(this.state.showPersons) {
       persons = (
-
+        <Persons persons={this.state.persons} 
+                 forDeletePerson= {this.deletePersonHandler}
+                 forChangeName= {this.nameChangedHandler} /> 
+        /*
     <div>
         { this.state.persons.map((person, personIndex) =>{
           return  ( //<ErrorBoundary>
@@ -105,9 +110,10 @@ class App extends Component {
         })}
          
     </div>
+    */
     );
      
-    buttonClass.push(classesCssModules.Red);
+    //buttonClass.push(classesCssModules.Red);
     /*
       style.backgroundColor = 'red';
       style[':hover'] = {
@@ -118,6 +124,7 @@ class App extends Component {
 
 
     }
+    /*
     let classesCss = [];
     if(this.state.persons.length <= 2) {
       classesCss.push(classesCssModules.red);
@@ -125,13 +132,11 @@ class App extends Component {
     if(this.state.persons.length <=1) {
        classesCss.push(classesCssModules.bold);
     }
+    */
     return (
      // <StyleRoot>
       <div className={classesCssModules.App}>
-        <h1>Hi, I'm a React App</h1>
-        <p className={classesCss.join(' ')} >This is really working!</p>
-        
-        <button className={buttonClass.join(' ')} onClick={this.togglePersons}>Toggle Persons</button>
+      <Cockpit persons={this.state.persons} clicked={this.togglePersons } showPersons={this.state.showPersons} />
           {persons}
       </div>
       //</StyleRoot>
