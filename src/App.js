@@ -4,6 +4,7 @@ import classesCssModules from './App.css';
 import Person from './Person/Person';
 //import Radium , {StyleRoot} from 'radium';
 //import styled from 'styled-components';
+//import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 /*
 const ButtonComponent = styled.button`
@@ -95,9 +96,12 @@ class App extends Component {
 
     <div>
         { this.state.persons.map((person, personIndex) =>{
-          return <Person key={person.id} name={person.name} 
+          return  ( //<ErrorBoundary>
+             <Person  key={person.id} name={person.name} 
           age={person.age} click={()=> this.deletePersonHandler(personIndex) } 
-          changed={(event)=>{this.nameChangedHandler(event, person.id)}} />
+          changed={(event)=>{this.nameChangedHandler(event, person.id)}} /> 
+          //</ErrorBoundary>
+          )
         })}
          
     </div>
@@ -128,8 +132,6 @@ class App extends Component {
         <p className={classesCss.join(' ')} >This is really working!</p>
         
         <button className={buttonClass.join(' ')} onClick={this.togglePersons}>Toggle Persons</button>
-        
-        
           {persons}
       </div>
       //</StyleRoot>
