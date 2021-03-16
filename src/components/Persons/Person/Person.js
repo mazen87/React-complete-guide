@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 //import './Person.css';
 import classesCssModules from './Person.css';
 //import Radium from 'radium';
@@ -19,7 +19,10 @@ const DivCompnent = styled.div`
     
     `
 */
-const person = (props) => {
+//const person = (props) => {
+    class Person extends Component {
+        render (){
+    console.log('[Person.js] rendering ...');
     /*
     const style = {
         '@media (min-width: 500px)' : {
@@ -37,12 +40,15 @@ const person = (props) => {
         // <DivCompnent>
    <div className={classesCssModules.Person}>   
    
-        <p  onClick={props.click}> I'm {props.name}  and I am {props.age} years old! </p>
-        <p>{props.children}</p>
-        <input type="text" onChange={props.changed} value={props.name}/>
+        <p  onClick={this.props.click}> I'm {this.props.name}  and I am {this.props.age} years old! </p>
+        <p>{this.props.children}</p>
+        <input type="text" onChange={this.props.changed} value={this.props.name}/>
   
    </div>   
      //</DivCompnent>
-    )
-};
-export default person;
+    );
+
+        };
+       
+}
+export default Person;

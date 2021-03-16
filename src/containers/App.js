@@ -23,6 +23,11 @@ const ButtonComponent = styled.button`
 `
 */
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log('[App.js] constructor');
+    //this.setState = some code here 
+  };
 
   state = {
     persons: [
@@ -31,9 +36,33 @@ class App extends Component {
       { id:'fmpzer567', name: 'Stephanie', age: 26 }
     ],
     otherState: 'some other value',
-    showPersons : false
+    showPersons : false,
+    showCockpit :true
  
   };
+
+  static getDerivedStateFromProps(props, state){
+    console.log('[App.js] getDerivedStateFromProps',props);
+    return state;
+  }
+  /*
+  componentWillUnmount(){
+    console.log('[App.js] componentWillMount');
+  };
+  */
+
+  componentDidMount(){
+    console.log('[App.js] componentDidMount');
+  };
+
+  shouldComponentUpdate (nextProps,nextState) {
+    console.log('[App.js] shouldComponentUpdate');
+    return true;
+  }
+
+  componentDidUpdate(){
+    console.log('[App.js] componentDidUpdate');
+  }
   
   deletePersonHandler = (personIndex) => {
     //let persons = this.state.persons.slice();
@@ -76,6 +105,7 @@ class App extends Component {
   }
  
   render() {
+    console.log('[App.js] render');
     /*
     const style = {
       backgroundColor : 'green',
@@ -136,7 +166,10 @@ class App extends Component {
     return (
      // <StyleRoot>
       <div className={classesCssModules.App}>
-      <Cockpit persons={this.state.persons} clicked={this.togglePersons } showPersons={this.state.showPersons} />
+        <button onClick={()=>{this.setState({showCockpit:false})}} >Cockpit component </button>
+        {this.state.showCockpit ?
+      <Cockpit personsLength={this.state.persons.length} clicked={this.togglePersons } showPersons={this.state.showPersons} appTitle={this.props.appTitle} />
+         : null}
           {persons}
       </div>
       //</StyleRoot>
