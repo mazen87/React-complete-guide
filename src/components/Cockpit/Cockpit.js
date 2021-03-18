@@ -1,13 +1,15 @@
-import React ,{useEffect , memo} from 'react';
+import React ,{useEffect , memo , useRef} from 'react';
 import classesCssModules from './Cockpit.css';
 
 const Cockpit = (props) => {
+    const toggleBtnRef = useRef(null);
     useEffect(()=>{
         console.log('[cockpit.js] useEffect');
         //Http request.....
        setTimeout(()=>{
             alert('date was successfully saved to cloiud !');
         },1000);
+        toggleBtnRef.current.click();
         return ()=>{
            // clearTimeout(timer);
             console.log('[cockpit.js] clean up work in useEffect !');
@@ -39,7 +41,8 @@ const Cockpit = (props) => {
         <h1>{props.appTitle}</h1>
         <p className={classesCss.join(' ')} >This is really working!</p>
         
-        <button className={buttonClass.join(' ')} onClick={props.clicked}>Toggle Persons</button>
+        <button ref={toggleBtnRef}
+        className={buttonClass.join(' ')} onClick={props.clicked}>Toggle Persons</button>
        
       </div>
     );
