@@ -7,8 +7,8 @@ import Cockpit from '../components/Cockpit/Cockpit';
 //import Radium , {StyleRoot} from 'radium';
 //import styled from 'styled-components';
 //import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
-import WithClass from '../hoc/WithClass';
-
+import withClass from '../hoc/WithClass';
+import Aux from '../hoc/Auxiliaire';
 /*
 const ButtonComponent = styled.button`
         background-color : ${(props) => props.altHover ? 'red' : 'green' };
@@ -167,13 +167,17 @@ class App extends Component {
     return (
      // <StyleRoot>
      // <div className={classesCssModules.App}>
-     <WithClass classes={classesCssModules.App}>
-        <button onClick={()=>{this.setState({showCockpit:false})}} >Cockpit component </button>
-        {this.state.showCockpit ?
-      <Cockpit personsLength={this.state.persons.length} clicked={this.togglePersons } showPersons={this.state.showPersons} appTitle={this.props.appTitle} />
-         : null}
-          {persons}
-     </WithClass>     
+     //<WithClass classes={classesCssModules.App}>
+     <Aux>
+            <button onClick={()=>{this.setState({showCockpit:false})}} >Cockpit component </button>
+            {this.state.showCockpit ?
+          <Cockpit personsLength={this.state.persons.length} 
+          clicked={this.togglePersons } showPersons={this.state.showPersons} 
+          appTitle={this.props.appTitle} />
+            : null }
+              {persons}
+      </Aux>
+     //</WithClass>     
       //</div>
       //</StyleRoot>
     );
@@ -182,4 +186,4 @@ class App extends Component {
   
 }
 
-export default App;
+export default withClass(App , classesCssModules.App) ;
