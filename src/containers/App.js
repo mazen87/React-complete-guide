@@ -7,6 +7,7 @@ import Cockpit from '../components/Cockpit/Cockpit';
 //import Radium , {StyleRoot} from 'radium';
 //import styled from 'styled-components';
 //import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import WithClass from '../hoc/WithClass';
 
 /*
 const ButtonComponent = styled.button`
@@ -165,13 +166,15 @@ class App extends Component {
     */
     return (
      // <StyleRoot>
-      <div className={classesCssModules.App}>
+     // <div className={classesCssModules.App}>
+     <WithClass classes={classesCssModules.App}>
         <button onClick={()=>{this.setState({showCockpit:false})}} >Cockpit component </button>
         {this.state.showCockpit ?
       <Cockpit personsLength={this.state.persons.length} clicked={this.togglePersons } showPersons={this.state.showPersons} appTitle={this.props.appTitle} />
          : null}
           {persons}
-      </div>
+     </WithClass>     
+      //</div>
       //</StyleRoot>
     );
   }
