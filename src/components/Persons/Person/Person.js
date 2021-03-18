@@ -5,6 +5,7 @@ import classesCssModules from './Person.css';
 import styled from 'styled-components';
 import Aux from '../../../hoc/Auxiliaire';
 import withClass from '../../../hoc/WithClass';
+import PropTypes from 'prop-types';
 
 /*
 const DivCompnent = styled.div`
@@ -53,7 +54,7 @@ const DivCompnent = styled.div`
       return  <Aux classes={classesCssModules.Person}>  
         
                     <p onClick={this.props.click}> I'm {this.props.name}  and I am {this.props.age} years old! </p>
-                    <p >{this.props.children}</p>
+                    <p ></p>
                     <input  type="text" onChange={this.props.changed} value={this.props.name}/>
                   
               </Aux>
@@ -62,6 +63,18 @@ const DivCompnent = styled.div`
    // );
 
         };
+
+
+        
        
 }
+
+Person.propTypes = {
+    click: PropTypes.func,
+    name: PropTypes.string,
+    age: PropTypes.number,
+    changed: PropTypes.func
+    
+};
+
 export default withClass(Person ,classesCssModules.Person );
