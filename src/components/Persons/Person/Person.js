@@ -4,6 +4,7 @@ import classesCssModules from './Person.css';
 //import Radium from 'radium';
 import styled from 'styled-components';
 import Aux from '../../../hoc/Auxiliaire';
+import withClass from '../../../hoc/WithClass';
 
 /*
 const DivCompnent = styled.div`
@@ -49,7 +50,7 @@ const DivCompnent = styled.div`
         <input key="3" type="text" onChange={this.props.changed} value={this.props.name}/>];
     */
 
-      return  <Aux>  
+      return  <Aux classes={classesCssModules.Person}>  
         
                     <p onClick={this.props.click}> I'm {this.props.name}  and I am {this.props.age} years old! </p>
                     <p >{this.props.children}</p>
@@ -63,4 +64,4 @@ const DivCompnent = styled.div`
         };
        
 }
-export default Person;
+export default withClass(Person ,classesCssModules.Person );
