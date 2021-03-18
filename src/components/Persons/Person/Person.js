@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component , Fragment } from 'react';
 //import './Person.css';
 import classesCssModules from './Person.css';
 //import Radium from 'radium';
 import styled from 'styled-components';
-import Auxiliaire from '../../../hoc/Auxiliaire';
+import Aux from '../../../hoc/Auxiliaire';
 
 /*
 const DivCompnent = styled.div`
@@ -49,13 +49,13 @@ const DivCompnent = styled.div`
         <input key="3" type="text" onChange={this.props.changed} value={this.props.name}/>];
     */
 
-      return  <Auxiliaire>  
+      return  <Aux>  
         
                     <p onClick={this.props.click}> I'm {this.props.name}  and I am {this.props.age} years old! </p>
                     <p >{this.props.children}</p>
                     <input  type="text" onChange={this.props.changed} value={this.props.name}/>
                   
-              </Auxiliaire>
+              </Aux>
    //</div>   
      //</DivCompnent>
    // );
