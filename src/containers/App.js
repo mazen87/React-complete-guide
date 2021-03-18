@@ -9,6 +9,7 @@ import Cockpit from '../components/Cockpit/Cockpit';
 //import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 import withClass from '../hoc/WithClass';
 import Aux from '../hoc/Auxiliaire';
+import AuthContext from '../context/auth-context';
 /*
 const ButtonComponent = styled.button`
         background-color : ${(props) => props.altHover ? 'red' : 'green' };
@@ -39,7 +40,8 @@ class App extends Component {
     otherState: 'some other value',
     showPersons : false,
     showCockpit :true,
-    changeCounter : 0
+    changeCounter : 0,
+    isAuthenticated :false
  
   };
 
@@ -106,6 +108,10 @@ class App extends Component {
     })
     
   }
+
+  authentificationHandler = ()=> {
+    this.setState({isAuthenticated: true});
+  };
  
   render() {
     console.log('[App.js] render');
@@ -130,7 +136,8 @@ class App extends Component {
       persons = (
         <Persons persons={this.state.persons} 
                  forDeletePerson= {this.deletePersonHandler}
-                 forChangeName= {this.nameChangedHandler} /> 
+                 forChangeName= {this.nameChangedHandler} 
+                 isAuthenticated={this.state.isAuthenticated}  /> 
         /*
     <div>
         { this.state.persons.map((person, personIndex) =>{
@@ -172,12 +179,18 @@ class App extends Component {
      //<WithClass classes={classesCssModules.App}>
      <Aux>
             <button onClick={()=>{this.setState({showCockpit:false})}} >Cockpit component </button>
+          <AuthContext.Provider value={{ isAuthenticated: this.state.isAuthenticated , login:this.authentificationHandler}}> 
             {this.state.showCockpit ?
-          <Cockpit personsLength={this.state.persons.length} 
-          clicked={this.togglePersons } showPersons={this.state.showPersons} 
-          appTitle={this.props.appTitle} />
-            : null }
-              {persons}
+          
+              <Cockpit personsLength={this.state.persons.length} 
+              clicked={this.togglePersons } showPersons={this.state.showPersons} 
+              appTitle={this.props.appTitle}  
+              //authentification={this.authentificationHandler} 
+              //isAuthenticated={this.state.isAuthenticated}
+              />
+                : null }
+                  {persons}
+         </AuthContext.Provider>     
       </Aux>
      //</WithClass>     
       //</div>
