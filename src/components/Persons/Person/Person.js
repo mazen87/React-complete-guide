@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Aux from '../../../hoc/Auxiliaire';
 import withClass from '../../../hoc/WithClass';
 import PropTypes from 'prop-types';
+import AuthContext from '../../../context/auth-context';
 
 /*
 const DivCompnent = styled.div`
@@ -61,10 +62,16 @@ const DivCompnent = styled.div`
         <input key="3" type="text" onChange={this.props.changed} value={this.props.name}/>];
     */
 
-      return  <Aux classes={classesCssModules.Person}>  
-        
+      return  <Aux classes={classesCssModules.Person}> 
+                 <AuthContext.Consumer>
+                     {(context)=> 
+                           context.isAuthenticated ?<p>Authenticated !</p> : <p> please log in ! </p>
+                     
+                     }    
+                   
+                 </AuthContext.Consumer>   
                     <p onClick={this.props.click}> I'm {this.props.name}  and I am {this.props.age} years old! </p>
-                    <p ></p>
+                    <p>{this.props.children}</p>
                     <input 
                     //ref = {(inputEl)=>{ this.inputElement = inputEl}} 
                     ref = {this.elementInput}

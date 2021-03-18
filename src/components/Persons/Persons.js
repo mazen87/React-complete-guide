@@ -54,7 +54,9 @@ class Persons extends PureComponent {
             return  ( //<ErrorBoundary>
                <Person  key={person.id} name={person.name} 
             age={person.age} click={()=> this.props.forDeletePerson(personIndex) } 
-            changed={(event)=>{this.props.forChangeName(event, person.id)}} /> 
+            changed={(event)=>{this.props.forChangeName(event, person.id)}}  
+            //isAuth={this.props.isAuthenticated} 
+            /> 
             //</ErrorBoundary>
             )
           });
