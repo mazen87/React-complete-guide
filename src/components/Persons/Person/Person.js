@@ -30,6 +30,8 @@ const DivCompnent = styled.div`
            this.elementInput = React.createRef();
         }
 
+        static contextType = AuthContext;
+
 
         componentDidMount(){
            // this.inputElement.focus();
@@ -63,13 +65,11 @@ const DivCompnent = styled.div`
     */
 
       return  <Aux classes={classesCssModules.Person}> 
-                 <AuthContext.Consumer>
-                     {(context)=> 
-                           context.isAuthenticated ?<p>Authenticated !</p> : <p> please log in ! </p>
-                     
+               
+                     {
+                           this.context.isAuthenticated ?<p>Authenticated !</p> : <p> please log in ! </p>  
                      }    
                    
-                 </AuthContext.Consumer>   
                     <p onClick={this.props.click}> I'm {this.props.name}  and I am {this.props.age} years old! </p>
                     <p>{this.props.children}</p>
                     <input 
